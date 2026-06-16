@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #e8deb5;
+  --color-gold-dim: #c4b78a;
+  --color-jungle-dark: #0a0f08;
+  --color-jungle-mid: #1a2a12;
+  --color-fuchsia-party: #ff00c8;
+  --color-green-jungle: #3d7a1a;
+  --color-green-light: #5aad2e;
+  --color-bg: #050a04;
+  --color-card: #0d1a0a;
+  --color-border: #1a3010;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: #f0f0f0;
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── LOGO TRIBAL FONT ────────────────────────────────────── */
+.logo-jamboo {
+  font-family: 'Courier New', monospace;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  text-shadow:
+    0 0 20px rgba(232, 222, 181, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.logo-match {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  text-shadow:
+    0 0 15px rgba(232, 222, 181, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(135deg, #e8deb5, #c4b78a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Neon glow utilities */
+.glow-gold {
+  box-shadow: 0 0 25px rgba(232, 222, 181, 0.2);
+}
+.glow-green {
+  box-shadow: 0 0 20px rgba(93, 173, 46, 0.25);
+}
+
+/* Card border gradient */
+.card-border {
+  border: 1px solid rgba(232, 222, 181, 0.12);
+  background: linear-gradient(145deg, rgba(13,26,10,0.95), rgba(10,15,8,0.95));
+  backdrop-filter: blur(8px);
+}
+
+/* ─── JUNGLE ANIMATIONS ───────────────────────────────────── */
+
+@keyframes sway {
+  0%   { transform: rotate(0deg) translateX(0); }
+  25%  { transform: rotate(2.5deg) translateX(2px); }
+  75%  { transform: rotate(-2.5deg) translateX(-2px); }
+  100% { transform: rotate(0deg) translateX(0); }
+}
+
+@keyframes floatLeaf {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  33%  { transform: translateY(-6px) rotate(3deg); }
+  66%  { transform: translateY(-3px) rotate(-2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50%       { transform: scale(1.04); opacity: 0.85; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes sunburst-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%      { opacity: 0.7; transform: scale(1.03); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes flame-flicker {
+  0%, 100% { transform: scale(1) translateY(0); }
+  25%  { transform: scale(1.02) translateY(-1px); }
+  50%  { transform: scale(0.98) translateY(1px); }
+  75%  { transform: scale(1.01) translateY(-0.5px); }
+}
+
+.plant-sway {
+  transform-origin: bottom center;
+  animation: sway 5s ease-in-out infinite;
+}
+.plant-sway-slow {
+  transform-origin: bottom center;
+  animation: sway 8s ease-in-out infinite;
+}
+.plant-sway-rev {
+  transform-origin: bottom center;
+  animation: sway 6s ease-in-out infinite reverse;
+}
+.plant-float {
+  animation: floatLeaf 6s ease-in-out infinite;
+}
+.plant-float-slow {
+  animation: floatLeaf 9s ease-in-out infinite;
+}
+.plant-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+.sunburst-pulse {
+  animation: sunburst-pulse 4s ease-in-out infinite;
+}
+@keyframes fade-in-bounce {
+  0%   { opacity: 0; transform: translateY(30px) scale(0.9); }
+  60%  { opacity: 1; transform: translateY(-6px) scale(1.02); }
+  80%  { transform: translateY(2px) scale(0.99); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-fade-in-bounce {
+  animation: fade-in-bounce 0.9s ease-out forwards;
+}
