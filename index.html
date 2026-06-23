@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VELVET contactos · Acceso Exclusivo VIP</title>
     <meta name="description" content="EN LA VIDA TODO SON CONTACTOS. VELVET contactos: socialité selectivo, lujo y conexiones VIP." />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -94,9 +95,9 @@
     </header>
 
     <main class="relative z-10 pt-20 pb-24">
-      <!-- Hero / Welcome -->
+      <!-- Hero / Formulario de registro VIP -->
       <section class="min-h-[85vh] flex flex-col items-center justify-center px-6 text-center">
-        <div class="relative w-40 h-40 mb-8 animate-float">
+        <div class="relative w-28 h-28 mb-6 animate-float">
           <div class="absolute inset-0 rounded-full bg-velvet-rose/20 blur-2xl"></div>
           <!-- Isotipo VELVET -->
           <svg viewBox="0 0 400 460" class="w-full h-full drop-shadow-[0_0_24px_rgba(183,110,121,0.45)]" aria-label="Isotipo VELVET">
@@ -114,21 +115,11 @@
                 <stop offset="100%" stop-color="#B76E79" />
               </linearGradient>
             </defs>
-
-            <!-- Marco exterior en V -->
             <path d="M55 50 L200 400 L345 50 L295 50 L200 310 L105 50 Z" fill="url(#roseGoldIso)" opacity="0.95" />
-
-            <!-- Perfil izquierdo (frente, nariz, labios, barbilla) -->
             <path d="M138 72 C115 82 100 110 96 150 C93 190 105 230 128 260 C145 283 168 300 195 315 L200 318 L200 362 L150 325 C120 300 98 265 90 225 C82 185 88 140 108 105 C118 87 130 76 138 72 Z" fill="none" stroke="url(#roseGoldStroke)" stroke-width="4.5" opacity="0.95" />
-            <!-- Nariz/labios izquierdo -->
             <path d="M138 72 C142 95 145 120 140 145 C138 158 132 168 122 175 C118 178 114 180 110 181" fill="none" stroke="url(#roseGoldStroke)" stroke-width="3.5" opacity="0.9" />
-
-            <!-- Perfil derecho (espejo) -->
             <path d="M262 72 C285 82 300 110 304 150 C307 190 295 230 272 260 C255 283 232 300 205 315 L200 318 L200 362 L250 325 C280 300 302 265 310 225 C318 185 312 140 292 105 C282 87 270 76 262 72 Z" fill="none" stroke="url(#roseGoldStroke)" stroke-width="4.5" opacity="0.95" />
-            <!-- Nariz/labios derecho -->
             <path d="M262 72 C258 95 255 120 260 145 C262 158 268 168 278 175 C282 178 286 180 290 181" fill="none" stroke="url(#roseGoldStroke)" stroke-width="3.5" opacity="0.9" />
-
-            <!-- Destello central de 4 puntas -->
             <g transform="translate(200,232)" class="sparkle">
               <path d="M0 -44 L9 -9 L44 0 L9 9 L0 44 L-9 9 L-44 0 L-9 -9 Z" fill="#F4EADE" />
               <circle cx="0" cy="0" r="9" fill="url(#roseGoldIso)" />
@@ -136,23 +127,56 @@
           </svg>
         </div>
 
-        <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-wide text-velvet-text mb-3">VELVET</h1>
+        <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-wide text-velvet-text mb-2">VELVET</h1>
         <p class="text-velvet-rose text-sm tracking-[0.3em] uppercase mb-6">contactos</p>
-        <p class="text-velvet-rose-light/90 text-lg sm:text-xl font-light max-w-xs mx-auto leading-relaxed mb-10">
-          EN LA VIDA TODO SON CONTACTOS
-        </p>
+        <p class="text-velvet-rose-light/80 text-sm italic mb-8">Donde la elegancia se encuentra con la conexión</p>
 
-        <div class="w-full max-w-xs space-y-4">
-          <button class="w-full py-4 rounded-2xl metallic-rose-gold text-velvet-bg font-semibold tracking-widest uppercase text-sm shadow-lg hover:shadow-rose-500/30 transition-all duration-300 hover:scale-[1.02]">
-            Solicitar acceso VIP
-          </button>
-          <button class="w-full py-4 rounded-2xl velvet-glass text-velvet-rose-light border border-velvet-rose/20 font-medium tracking-widest uppercase text-sm hover:border-velvet-rose/40 transition-all duration-300">
-            Entrar con Instagram
-          </button>
-        </div>
+        <!-- Formulario funcional -->
+        <form id="vip-register-form" class="w-full max-w-xs velvet-glass rounded-3xl p-6 border border-velvet-rose/15 shadow-2xl text-left">
+          <!-- Foto -->
+          <div class="flex flex-col items-center mb-5">
+            <button type="button" id="photo-upload-btn" class="w-24 h-24 rounded-full border-2 border-dashed border-velvet-rose/40 flex items-center justify-center mb-2 overflow-hidden bg-white/5 hover:border-velvet-rose/70 transition"
+              aria-label="Subir foto">
+              <span id="photo-preview" class="w-full h-full bg-cover bg-center flex items-center justify-center text-2xl">📷</span>
+            </button>
+            <span class="text-xs text-velvet-rose-light/70">Toca para agregar tu foto</span>
+            <input type="file" id="reg-photo" accept="image/*" class="hidden" />
+          </div>
 
-        <p class="mt-8 text-[11px] text-velvet-rose-light/50 tracking-wide max-w-xs">
-          Plataforma privada · Perfiles verificados · Datos cifrados de extremo a extremo
+          <!-- Nombre -->
+          <div class="mb-4">
+            <input type="text" id="reg-name" placeholder="Tu nombre" required
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-velvet-text placeholder:text-velvet-rose-light/40 focus:outline-none focus:border-velvet-rose/50" />
+          </div>
+
+          <!-- Teléfono -->
+          <div class="mb-2">
+            <div class="flex items-center w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus-within:border-velvet-rose/50">
+              <span class="text-velvet-rose-light/50 text-sm mr-3">🇪🇸</span>
+              <input type="tel" id="reg-phone" placeholder="612 345 678" required
+                class="flex-1 bg-transparent text-sm text-velvet-text placeholder:text-velvet-rose-light/40 focus:outline-none" />
+            </div>
+          </div>
+          <p class="text-[11px] text-velvet-rose-light/50 mb-4">Solo 9 dígitos · Se comparte solo si hay match</p>
+
+          <!-- Consentimiento -->
+          <label class="flex items-start gap-3 cursor-pointer mb-6">
+            <input type="checkbox" id="reg-consent" class="mt-1 w-4 h-4 accent-velvet-rose rounded" />
+            <span class="text-[11px] text-velvet-rose-light/80 leading-tight">
+              Entiendo que mis datos se usan solo durante el evento y se eliminan después.
+            </span>
+          </label>
+
+          <button type="submit" id="reg-submit" disabled
+            class="w-full py-4 rounded-2xl metallic-rose-gold text-velvet-bg font-semibold tracking-widest uppercase text-sm shadow-lg opacity-50 transition-all duration-300">
+            Entrar
+          </button>
+
+          <p id="reg-status" class="mt-4 text-xs text-center min-h-[1rem]"></p>
+        </form>
+
+        <p class="mt-6 text-[11px] text-velvet-rose-light/50 tracking-wide max-w-xs">
+          Tus datos solo se usan hoy y se eliminan al terminar
         </p>
       </section>
 

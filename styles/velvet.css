@@ -113,8 +113,15 @@ button.metallic-rose-gold:hover,
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
 }
 
-/* Selection */
-::selection {
-  background: rgba(183, 110, 121, 0.35);
-  color: var(--velvet-text);
+/* Photo preview with image */
+#photo-preview.has-image {
+  color: transparent;
+  background-size: cover;
+  background-position: center;
 }
+
+/* Disabled button state */
+button:disabled {
+  cursor: not-allowed;
+}
+
