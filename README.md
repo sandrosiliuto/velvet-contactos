@@ -2,9 +2,9 @@
 
 Imagen de marca y dirección de arte para la app **VELVET_contactos**, desplegada en GitHub Pages.
 
-- **URL pública:** https://velvet-contactos.github.io/ *(ajustar tras crear repo)*
+- **URL pública:** https://sandrosiliuto.github.io/velvet-contactos/
 - **Tagline:** *EN LA VIDA TODO SON CONTACTOS*
-- **Estado:** Vip siempre visible.
+- **Estado:** VIP siempre visible.
 
 ## Identidad aplicada
 
