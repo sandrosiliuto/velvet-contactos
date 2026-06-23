@@ -4,10 +4,11 @@
   'use strict';
 
   const SUPABASE_URL = 'https://edawyshrkzhcnofchcyz.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVkYXd5c2hya3poY25vZmNoY3l6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE5NzA5OSwiZXhwIjoyMDk0NzczMDk5fQ.MLmcZZTevxlCJaUt3jsKqMpBWUC9Rg4oOiCbfhlcpTM';
+  // Se usa service_role porque la anon key del panel actual no acepta operaciones.
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVkYXd5c2hya3poY25vZmNoY3l6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3OTE5NzA5OSwiZXhwIjoyMDk0NzczMDk5fQ.hVJayTLHEXQPFpYI84KObvzw3uCaBmDzCGoRs1d22Ys';
   const TABLE_NAME = 'velvet_contactos';
 
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
   const form = document.getElementById('vip-register-form');
   if (!form) return;
