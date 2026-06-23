@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VELVET contactos · Acceso Exclusivo VIP</title>
+    <meta name="description" content="EN LA VIDA TODO SON CONTACTOS. VELVET contactos: socialité selectivo, lujo y conexiones VIP." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles/velvet.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              velvet: {
+                bg: '#0A0A0A',
+                surface: '#2B1F2A',
+                rose: '#B76E79',
+                'rose-dark': '#8F404C',
+                'rose-light': '#F2D7D3',
+                text: '#F4EADE',
+              },
+            },
+            fontFamily: {
+              serif: ['Cinzel', 'serif'],
+              sans: ['Inter', 'sans-serif'],
+            },
+            letterSpacing: {
+              logo: '0.35em',
+              wide: '0.05em',
+            },
+            animation: {
+              pulseSlow: 'pulseSlow 3s ease-in-out infinite',
+              float: 'float 6s ease-in-out infinite',
+              shimmer: 'shimmer 2.5s linear infinite',
+              sparkle: 'sparkle 2.2s ease-in-out infinite',
+            },
+            keyframes: {
+              pulseSlow: {
+                '0%, 100%': { opacity: '0.85' },
+                '50%': { opacity: '1' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-8px)' },
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '200% 0' },
+                '100%': { backgroundPosition: '-200% 0' },
+              },
+              sparkle: {
+                '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+                '50%': { opacity: '1', transform: 'scale(1.15)' },
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen bg-velvet-bg text-velvet-text font-sans overflow-x-hidden">
+    <!-- Ambiente radial malva -->
+    <div class="fixed inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-1/3 left-1/2 -translate-x-1/2 w-[140vw] h-[80vh] rounded-full bg-[radial-gradient(circle,rgba(43,31,42,0.85)_0%,rgba(10,10,10,0)_70%)]"></div>
+      <div class="absolute bottom-0 right-0 w-[60vw] h-[50vh] rounded-full bg-[radial-gradient(circle,rgba(183,110,121,0.12)_0%,rgba(10,10,10,0)_70%)]"></div>
+    </div>
+
+    <!-- VIP persistente -->
+    <header class="fixed top-0 inset-x-0 z-50 h-14 velvet-glass border-b border-white/5">
+      <div class="max-w-md mx-auto h-full px-6 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <svg width="22" height="22" viewBox="0 0 200 200" fill="none" aria-hidden="true" class="sparkle">
+            <path d="M100 10 L112 88 L190 100 L112 112 L100 190 L88 112 L10 100 L88 88 Z" fill="url(#roseGold)" />
+            <defs>
+              <linearGradient id="roseGold" x1="0" y1="0" x2="200" y2="200">
+                <stop offset="0%" stop-color="#8F404C" />
+                <stop offset="35%" stop-color="#B76E79" />
+                <stop offset="55%" stop-color="#F2D7D3" />
+                <stop offset="75%" stop-color="#B76E79" />
+                <stop offset="100%" stop-color="#8F404C" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="font-serif text-xs tracking-logo text-velvet-rose-light">VELVET</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="vip-badge text-[10px] font-semibold tracking-widest">VIP</span>
+          <span class="text-[10px] text-velvet-rose-light/70 tracking-wide hidden sm:inline">ACCESO EXCLUSIVO</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="relative z-10 pt-20 pb-24">
+      <!-- Hero / Welcome -->
+      <section class="min-h-[85vh] flex flex-col items-center justify-center px-6 text-center">
+        <div class="relative w-40 h-40 mb-8 animate-float">
+          <div class="absolute inset-0 rounded-full bg-velvet-rose/20 blur-2xl"></div>
+          <!-- Isotipo VELVET -->
+          <svg viewBox="0 0 400 460" class="w-full h-full drop-shadow-[0_0_24px_rgba(183,110,121,0.45)]" aria-label="Isotipo VELVET">
+            <defs>
+              <linearGradient id="roseGoldIso" x1="0" y1="0" x2="400" y2="460" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#8F404C" />
+                <stop offset="25%" stop-color="#B76E79" />
+                <stop offset="50%" stop-color="#F2D7D3" />
+                <stop offset="75%" stop-color="#B76E79" />
+                <stop offset="100%" stop-color="#8F404C" />
+              </linearGradient>
+            </defs>
+            <!-- Marco exterior en V -->
+            <path d="M55 50 L200 400 L345 50 L295 50 L200 310 L105 50 Z" fill="url(#roseGoldIso)" opacity="0.95" />
+            <!-- Rostro izquierdo -->
+            <path d="M140 85 C115 95 95 130 95 185 C95 240 120 285 150 310 L200 345 L150 260 C135 235 130 205 130 175 C130 145 138 115 155 95 C150 90 145 86 140 85 Z" fill="url(#roseGoldIso)" opacity="0.82" />
+            <!-- Rostro derecho (espejo) -->
+            <path d="M260 85 C285 95 305 130 305 185 C305 240 280 285 250 310 L200 345 L250 260 C265 235 270 205 270 175 C270 145 262 115 245 95 C250 90 255 86 260 85 Z" fill="url(#roseGoldIso)" opacity="0.82" />
+            <!-- Líneas de conexión simétricas -->
+            <path d="M155 95 C170 140 180 190 200 230 C220 190 230 140 245 95" fill="none" stroke="url(#roseGoldIso)" stroke-width="4" opacity="0.9" />
+            <path d="M150 260 C165 240 185 235 200 230 C215 235 235 240 250 260" fill="none" stroke="url(#roseGoldIso)" stroke-width="4" opacity="0.9" />
+            <!-- Destello central de 4 puntas -->
+            <g transform="translate(200,230)" class="sparkle">
+              <path d="M0 -36 L7 -7 L36 0 L7 7 L0 36 L-7 7 L-36 0 L-7 -7 Z" fill="#F4EADE" />
+              <circle cx="0" cy="0" r="7" fill="url(#roseGoldIso)" />
+            </g>
+          </svg>
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-5xl font-bold tracking-wide text-velvet-text mb-3">VELVET</h1>
+        <p class="text-velvet-rose text-sm tracking-[0.3em] uppercase mb-6">contactos</p>
+        <p class="text-velvet-rose-light/90 text-lg sm:text-xl font-light max-w-xs mx-auto leading-relaxed mb-10">
+          EN LA VIDA TODO SON CONTACTOS
+        </p>
+
+        <div class="w-full max-w-xs space-y-4">
+          <button class="w-full py-4 rounded-2xl metallic-rose-gold text-velvet-bg font-semibold tracking-widest uppercase text-sm shadow-lg hover:shadow-rose-500/30 transition-all duration-300 hover:scale-[1.02]">
+            Solicitar acceso VIP
+          </button>
+          <button class="w-full py-4 rounded-2xl velvet-glass text-velvet-rose-light border border-velvet-rose/20 font-medium tracking-widest uppercase text-sm hover:border-velvet-rose/40 transition-all duration-300">
+            Entrar con Instagram
+          </button>
+        </div>
+
+        <p class="mt-8 text-[11px] text-velvet-rose-light/50 tracking-wide max-w-xs">
+          Plataforma privada · Perfiles verificados · Datos cifrados de extremo a extremo
+        </p>
+      </section>
+
+      <!-- Exploración de perfiles -->
+      <section class="px-4 max-w-md mx-auto mb-16">
+        <div class="flex items-end justify-between mb-5 px-2">
+          <h2 class="font-serif text-2xl text-velvet-text tracking-wide">Descubre</h2>
+          <span class="vip-badge text-[10px]">VIP</span>
+        </div>
+
+        <!-- Tarjeta de perfil -->
+        <article class="relative rounded-3xl overflow-hidden shadow-2xl border border-velvet-rose/10 group">
+          <div class="aspect-[3/4] bg-velvet-surface relative">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Perfil VELVET" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-velvet-bg via-velvet-bg/40 to-transparent"></div>
+          </div>
+
+          <div class="absolute bottom-0 inset-x-0 p-6">
+            <div class="flex items-center gap-2 mb-2">
+              <h3 class="font-serif text-2xl tracking-wide">Cristina, 29</h3>
+              <svg width="18" height="18" viewBox="0 0 200 200" class="sparkle" aria-label="Verificado VIP">
+                <path d="M100 10 L112 88 L190 100 L112 112 L100 190 L88 112 L10 100 L88 88 Z" fill="url(#roseGoldIso2)" />
+                <defs><linearGradient id="roseGoldIso2" x1="0" y1="0" x2="200" y2="200"><stop offset="0%" stop-color="#8F404C" /><stop offset="35%" stop-color="#B76E79" /><stop offset="55%" stop-color="#F2D7D3" /><stop offset="75%" stop-color="#B76E79" /><stop offset="100%" stop-color="#8F404C" /></linearGradient></defs>
+              </svg>
+            </div>
+            <p class="text-velvet-rose-light/80 text-sm mb-4">Arte · Viajes · Alta gastronomía · Málaga</p>
+            <div class="flex flex-wrap gap-2 mb-5">
+              <span class="pill">Arte contemporáneo</span>
+              <span class="pill">Vinos</span>
+              <span class="pill">Náutica</span>
+            </div>
+            <div class="flex gap-3">
+              <button class="flex-1 py-3 rounded-xl velvet-glass text-velvet-text text-sm font-medium tracking-wider hover:bg-white/5 transition">Descartar</button>
+              <button class="flex-1 py-3 rounded-xl metallic-rose-gold text-velvet-bg text-sm font-semibold tracking-wider shadow-lg hover:shadow-rose-500/30 transition">Conectar</button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Detalle de usuario -->
+      <section class="px-4 max-w-md mx-auto mb-16">
+        <div class="velvet-glass rounded-3xl p-6 border border-velvet-rose/10">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="font-serif text-xl tracking-wide">Perfil destacado</h2>
+            <span class="vip-badge text-[10px]">VIP</span>
+          </div>
+          <div class="grid grid-cols-3 gap-3 mb-5">
+            <div class="aspect-square rounded-2xl overflow-hidden border border-velvet-rose/10"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover" alt="" /></div>
+            <div class="aspect-square rounded-2xl overflow-hidden border border-velvet-rose/10"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover" alt="" /></div>
+            <div class="aspect-square rounded-2xl overflow-hidden border border-velvet-rose/10"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover" alt="" /></div>
+          </div>
+          <p class="text-velvet-rose-light/80 text-sm leading-relaxed mb-4">
+            Coleccionista de atardeceres, conversaciones que dejan huella y contactos que cambian el rumbo. Creo en el lujo de la intimidad.
+          </p>
+          <div class="flex items-center gap-3 p-3 rounded-2xl bg-white/[0.03] border border-white/5">
+            <div class="w-10 h-10 rounded-full metallic-rose-gold flex items-center justify-center text-velvet-bg font-bold text-xs">▶</div>
+            <div>
+              <p class="text-xs text-velvet-rose-light/60 uppercase tracking-wide">Nota de voz</p>
+              <p class="text-sm text-velvet-text">0:18 · Solo contactos VIP</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Centro de conversación -->
+      <section class="px-4 max-w-md mx-auto mb-16">
+        <div class="flex items-center justify-between mb-4 px-2">
+          <h2 class="font-serif text-2xl text-velvet-text tracking-wide">Conversaciones</h2>
+          <span class="vip-badge text-[10px]">VIP</span>
+        </div>
+
+        <!-- Contactos activos -->
+        <div class="flex gap-4 overflow-x-auto pb-4 mb-2 scrollbar-hide">
+          <div class="flex flex-col items-center gap-1 min-w-[64px]">
+            <div class="w-16 h-16 rounded-full p-[2px] metallic-rose-gold"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" class="w-full h-full rounded-full object-cover border-2 border-velvet-bg" alt="" /></div>
+            <span class="text-[10px] text-velvet-rose-light/80">Cris</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 min-w-[64px]">
+            <div class="w-16 h-16 rounded-full p-[2px] border border-velvet-rose/30"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" class="w-full h-full rounded-full object-cover border-2 border-velvet-bg" alt="" /></div>
+            <span class="text-[10px] text-velvet-rose-light/80">Andrés</span>
+          </div>
+          <div class="flex flex-col items-center gap-1 min-w-[64px]">
+            <div class="w-16 h-16 rounded-full p-[2px] border border-velvet-rose/30"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" class="w-full h-full rounded-full object-cover border-2 border-velvet-bg" alt="" /></div>
+            <span class="text-[10px] text-velvet-rose-light/80">Lucía</span>
+          </div>
+        </div>
+
+        <!-- Chat -->
+        <div class="velvet-glass rounded-3xl p-5 border border-velvet-rose/10 min-h-[280px] flex flex-col">
+          <div class="flex-1 space-y-4">
+            <div class="flex justify-start"><div class="max-w-[80%] rounded-2xl rounded-tl-none bg-velvet-surface px-4 py-3 text-sm text-velvet-text border border-white/5">¿Asistes al evento del rooftop este jueves?</div></div>
+            <div class="flex justify-end"><div class="max-w-[80%] rounded-2xl rounded-tr-none bg-velvet-rose px-4 py-3 text-sm text-velvet-bg font-medium shadow-lg">Solo si tengo mi pase VIP confirmado.</div></div>
+            <div class="flex justify-start"><div class="max-w-[80%] rounded-2xl rounded-tl-none bg-velvet-surface px-4 py-3 text-sm text-velvet-text border border-white/5">Ya está reservado. Nos vemos al atardecer.</div></div>
+          </div>
+          <div class="mt-4 flex items-center gap-2">
+            <input type="text" placeholder="Escribe un mensaje..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-velvet-text placeholder:text-velvet-rose-light/40 focus:outline-none focus:border-velvet-rose/40" />
+            <button class="w-11 h-11 rounded-xl metallic-rose-gold flex items-center justify-center text-velvet-bg font-bold shadow-lg">→</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA VIP final -->
+      <section class="px-6 text-center max-w-md mx-auto">
+        <div class="velvet-glass rounded-3xl p-8 border border-velvet-rose/20">
+          <svg width="32" height="32" viewBox="0 0 200 200" class="mx-auto mb-4 sparkle" aria-hidden="true">
+            <path d="M100 10 L112 88 L190 100 L112 112 L100 190 L88 112 L10 100 L88 88 Z" fill="url(#roseGoldIso3)" />
+            <defs><linearGradient id="roseGoldIso3" x1="0" y1="0" x2="200" y2="200"><stop offset="0%" stop-color="#8F404C" /><stop offset="35%" stop-color="#B76E79" /><stop offset="55%" stop-color="#F2D7D3" /><stop offset="75%" stop-color="#B76E79" /><stop offset="100%" stop-color="#8F404C" /></linearGradient></defs>
+          </svg>
+          <h2 class="font-serif text-2xl tracking-wide mb-2">Membresía VIP</h2>
+          <p class="text-velvet-rose-light/80 text-sm mb-6">Acceso prioritario, perfiles verificados con destello estelar y eventos exclusivos.</p>
+          <button class="w-full py-4 rounded-2xl metallic-rose-gold text-velvet-bg font-semibold tracking-widest uppercase text-sm shadow-lg hover:shadow-rose-500/30 transition-all duration-300">
+            Unirme al club
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer con tagline -->
+    <footer class="relative z-10 border-t border-white/5 py-8 text-center">
+      <p class="font-serif text-velvet-rose text-sm tracking-[0.25em] uppercase mb-2">VELVET contactos</p>
+      <p class="text-velvet-rose-light/50 text-xs tracking-widest">EN LA VIDA TODO SON CONTACTOS · VIP</p>
+    </footer>
+
+    <script src="./scripts/velvet.js"></script>
+  </body>
+</html>

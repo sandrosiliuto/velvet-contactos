@@ -1,0 +1,12 @@
+{
+  "name": "velvet-contactos",
+  "version": "1.0.0",
+  "description": "VELVET contactos · Acceso Exclusivo VIP",
+  "private": true,
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": ["velvet", "vip", "contactos", "lujo", "rose-gold"],
+  "author": "",
+  "license": "MIT"
+}
