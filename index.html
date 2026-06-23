@@ -108,20 +108,30 @@
                 <stop offset="75%" stop-color="#B76E79" />
                 <stop offset="100%" stop-color="#8F404C" />
               </linearGradient>
+              <linearGradient id="roseGoldStroke" x1="0" y1="0" x2="400" y2="460" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#B76E79" />
+                <stop offset="50%" stop-color="#F2D7D3" />
+                <stop offset="100%" stop-color="#B76E79" />
+              </linearGradient>
             </defs>
+
             <!-- Marco exterior en V -->
             <path d="M55 50 L200 400 L345 50 L295 50 L200 310 L105 50 Z" fill="url(#roseGoldIso)" opacity="0.95" />
-            <!-- Rostro izquierdo -->
-            <path d="M140 85 C115 95 95 130 95 185 C95 240 120 285 150 310 L200 345 L150 260 C135 235 130 205 130 175 C130 145 138 115 155 95 C150 90 145 86 140 85 Z" fill="url(#roseGoldIso)" opacity="0.82" />
-            <!-- Rostro derecho (espejo) -->
-            <path d="M260 85 C285 95 305 130 305 185 C305 240 280 285 250 310 L200 345 L250 260 C265 235 270 205 270 175 C270 145 262 115 245 95 C250 90 255 86 260 85 Z" fill="url(#roseGoldIso)" opacity="0.82" />
+
+            <!-- Silueta de rostro izquierdo (solo trazo) -->
+            <path d="M140 80 C115 95 95 135 95 190 C95 245 120 290 155 320 L200 355 L155 270 C140 245 135 215 135 185 C135 155 143 120 165 95" fill="none" stroke="url(#roseGoldStroke)" stroke-width="5" opacity="0.95" />
+
+            <!-- Silueta de rostro derecho (espejo) -->
+            <path d="M260 80 C285 95 305 135 305 190 C305 245 280 290 245 320 L200 355 L245 270 C260 245 265 215 265 185 C265 155 257 120 235 95" fill="none" stroke="url(#roseGoldStroke)" stroke-width="5" opacity="0.95" />
+
             <!-- Líneas de conexión simétricas -->
-            <path d="M155 95 C170 140 180 190 200 230 C220 190 230 140 245 95" fill="none" stroke="url(#roseGoldIso)" stroke-width="4" opacity="0.9" />
-            <path d="M150 260 C165 240 185 235 200 230 C215 235 235 240 250 260" fill="none" stroke="url(#roseGoldIso)" stroke-width="4" opacity="0.9" />
+            <path d="M165 95 C175 140 185 185 200 220 C215 185 225 140 235 95" fill="none" stroke="url(#roseGoldStroke)" stroke-width="4" opacity="0.9" />
+            <path d="M155 270 C170 250 185 235 200 225 C215 235 230 250 245 270" fill="none" stroke="url(#roseGoldStroke)" stroke-width="4" opacity="0.9" />
+
             <!-- Destello central de 4 puntas -->
-            <g transform="translate(200,230)" class="sparkle">
-              <path d="M0 -36 L7 -7 L36 0 L7 7 L0 36 L-7 7 L-36 0 L-7 -7 Z" fill="#F4EADE" />
-              <circle cx="0" cy="0" r="7" fill="url(#roseGoldIso)" />
+            <g transform="translate(200,220)" class="sparkle">
+              <path d="M0 -38 L8 -8 L38 0 L8 8 L0 38 L-8 8 L-38 0 L-8 -8 Z" fill="#F4EADE" />
+              <circle cx="0" cy="0" r="8" fill="url(#roseGoldIso)" />
             </g>
           </svg>
         </div>
