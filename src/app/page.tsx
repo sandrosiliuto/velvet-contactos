@@ -5,7 +5,7 @@ import { useState, useRef, FormEvent } from "react";
 import { motion } from "framer-motion";
 import { VelvetLogo } from "@/components/velvet-logo";
 import { VIPBadge } from "@/components/vip-badge";
-import { Camera, Check } from "lucide-react";
+import { Camera } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -80,12 +80,12 @@ export default function RegisterPage() {
 
         <form
           onSubmit={handleSubmit}
-          className="glass rounded-2xl p-6 space-y-5 velvet-glow"
+          className="glass rounded-2xl p-5 space-y-4 velvet-glow"
         >
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
-            className="w-full aspect-square max-h-48 rounded-xl border-2 border-dashed border-[#b76e79]/40 bg-[#2b1f2a]/40 flex flex-col items-center justify-center gap-2 overflow-hidden hover:border-[#b76e79] transition-colors"
+            className="w-full aspect-[16/10] max-h-36 rounded-xl border-2 border-dashed border-[#b76e79]/40 bg-[#2b1f2a]/40 flex flex-col items-center justify-center gap-2 overflow-hidden hover:border-[#b76e79] transition-colors"
           >
             {preview ? (
               <img
@@ -149,11 +149,8 @@ export default function RegisterPage() {
               name="accepted"
               value="true"
               required
-              className="peer sr-only"
+              className="mt-1 w-4 h-4 rounded border-[#f4eade]/30 text-[#b76e79] bg-[#0a0a0a]/60 focus:ring-[#b76e79] focus:ring-offset-0 focus:ring-1"
             />
-            <span className="w-5 h-5 rounded border border-[#f4eade]/20 flex items-center justify-center peer-checked:bg-[#b76e79] peer-checked:border-[#b76e79] transition-colors mt-0.5">
-              <Check className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100" />
-            </span>
             <span className="text-xs text-[#f4eade]/60 leading-relaxed">
               Acepto que VELVET contactos gestione mis datos para facilitar
               conexiones VIP entre adultos mayores de edad.
