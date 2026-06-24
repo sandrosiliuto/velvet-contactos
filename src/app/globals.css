@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-velvet-black: #0a0a0a;
+  --color-velvet-wine: #2b1f2a;
+  --color-velvet-rose: #b76e79;
+  --color-velvet-cream: #f4eade;
+
+  --color-background: var(--color-velvet-black);
+  --color-foreground: var(--color-velvet-cream);
+
+  --font-cinzel: var(--font-cinzel);
+  --font-inter: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: #0a0a0a;
+  --foreground: #f4eade;
+}
+
+html,
+body {
+  min-height: 100dvh;
+  background: radial-gradient(ellipse at top, #2b1f2a 0%, #0a0a0a 60%);
+  color: #f4eade;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(183, 110, 121, 0.4);
+}
+
+.glass {
+  background: rgba(43, 31, 42, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(244, 234, 222, 0.08);
+}
+
+.glass-strong {
+  background: rgba(43, 31, 42, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(183, 110, 121, 0.25);
+}
+
+.velvet-glow {
+  box-shadow: 0 0 40px rgba(183, 110, 121, 0.25), 0 0 80px rgba(183, 110, 121, 0.1);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(183, 110, 121, 0.5);
+}
+
+.vip-badge {
+  background: linear-gradient(135deg, #b76e79 0%, #2b1f2a 100%);
+  box-shadow: 0 0 20px rgba(183, 110, 121, 0.35);
+}
+
+/* Animación sutil de destello central */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #f4eade 0%,
+    #b76e79 50%,
+    #f4eade 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2b1f2a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b76e79;
 }

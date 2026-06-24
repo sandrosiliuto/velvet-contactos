@@ -1,103 +1,188 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useRouter } from "next/navigation";
+import { useState, useRef, FormEvent } from "react";
+import { motion } from "framer-motion";
+import { VelvetLogo } from "@/components/velvet-logo";
+import { VIPBadge } from "@/components/vip-badge";
+import { Camera, Check } from "lucide-react";
+
+export default function RegisterPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [preview, setPreview] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      setError("La foto debe pesar menos de 5 MB");
+      return;
+    }
+    setError("");
+    const reader = new FileReader();
+    reader.onloadend = () => setPreview(reader.result as string);
+    reader.readAsDataURL(file);
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Error en el registro");
+      }
+
+      router.push("/discover");
+      router.refresh();
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Error desconocido");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="min-h-dvh flex flex-col items-center justify-center px-6 py-12 relative overflow-hidden"
+    >
+      {/* Glow decorativo */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 bg-[#b76e79]/20 rounded-full blur-[100px] pointer-events-none" />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <div className="relative z-10 w-full max-w-sm">
+        <div className="flex flex-col items-center mb-8">
+          <VelvetLogo className="w-24 h-24 mb-4" />
+          <h1 className="font-[family-name:var(--font-cinzel)] text-3xl font-bold tracking-[0.2em] text-[#f4eade] text-glow">
+            VELVET
+          </h1>
+          <p className="text-[#b76e79] text-xs tracking-[0.3em] uppercase mt-2">
+            Contactos
+          </p>
+          <div className="mt-4">
+            <VIPBadge />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        <form
+          onSubmit={handleSubmit}
+          className="glass rounded-2xl p-6 space-y-5 velvet-glow"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="w-full aspect-square max-h-48 rounded-xl border-2 border-dashed border-[#b76e79]/40 bg-[#2b1f2a]/40 flex flex-col items-center justify-center gap-2 overflow-hidden hover:border-[#b76e79] transition-colors"
+          >
+            {preview ? (
+              <img
+                src={preview}
+                alt="Preview"
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <>
+                <Camera className="w-8 h-8 text-[#b76e79]" />
+                <span className="text-sm text-[#f4eade]/70">Añade tu foto</span>
+              </>
+            )}
+          </button>
+          <input
+            ref={fileInputRef}
+            type="file"
+            name="photo"
+            accept="image/png,image/jpeg,image/webp"
+            required
+            className="hidden"
+            onChange={handleFileChange}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+          <div>
+            <label className="block text-xs uppercase tracking-wider text-[#f4eade]/70 mb-1.5">
+              Nombre
+            </label>
+            <input
+              type="text"
+              name="name"
+              required
+              minLength={2}
+              maxLength={60}
+              placeholder="Tu nombre VIP"
+              className="w-full bg-[#0a0a0a]/60 border border-[#f4eade]/10 rounded-lg px-4 py-3 text-[#f4eade] placeholder:text-[#f4eade]/30 focus:outline-none focus:border-[#b76e79] transition-colors"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs uppercase tracking-wider text-[#f4eade]/70 mb-1.5">
+              Teléfono
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              required
+              pattern="\d{9}"
+              maxLength={9}
+              placeholder="612345678"
+              className="w-full bg-[#0a0a0a]/60 border border-[#f4eade]/10 rounded-lg px-4 py-3 text-[#f4eade] placeholder:text-[#f4eade]/30 focus:outline-none focus:border-[#b76e79] transition-colors"
+            />
+            <p className="text-[10px] text-[#f4eade]/40 mt-1.5">
+              9 dígitos españoles
+            </p>
+          </div>
+
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              name="accepted"
+              value="true"
+              required
+              className="peer sr-only"
+            />
+            <span className="w-5 h-5 rounded border border-[#f4eade]/20 flex items-center justify-center peer-checked:bg-[#b76e79] peer-checked:border-[#b76e79] transition-colors mt-0.5">
+              <Check className="w-3 h-3 text-white opacity-0 peer-checked:opacity-100" />
+            </span>
+            <span className="text-xs text-[#f4eade]/60 leading-relaxed">
+              Acepto que VELVET contactos gestione mis datos para facilitar
+              conexiones VIP entre adultos mayores de edad.
+            </span>
+          </label>
+
+          {error && (
+            <motion.p
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-[#b76e79] text-sm text-center"
+            >
+              {error}
+            </motion.p>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-[#b76e79] hover:bg-[#a05d68] disabled:opacity-60 text-white font-[family-name:var(--font-cinzel)] font-semibold tracking-widest uppercase py-4 rounded-lg transition-colors"
+          >
+            {loading ? "Entrando..." : "Entrar VIP"}
+          </button>
+        </form>
+
+        <p className="text-center mt-6 text-[10px] uppercase tracking-[0.25em] text-[#f4eade]/40">
+          En la vida todo son contactos
+        </p>
+      </div>
+    </motion.main>
   );
 }
