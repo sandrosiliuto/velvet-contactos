@@ -139,7 +139,7 @@ export default function RegisterPage() {
 
             <div className="mb-2">
               <div className="flex items-center w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus-within:border-[#B76E79]/50">
-                <span className="text-[#F2D7D3]/50 text-sm mr-3">ES 🇪🇸</span>
+                <span className="text-[#F2D7D3]/50 text-sm mr-3">ES</span>
                 <input
                   ref={phoneRef}
                   type="tel"
@@ -176,7 +176,7 @@ export default function RegisterPage() {
                 valid ? "opacity-100" : "opacity-50"
               }`}
             >
-              {loading ? "Entrando..." : "Entrar"}
+              {loading ? "Entrando..." : "ENTRAR"}
             </button>
 
             {error && (
