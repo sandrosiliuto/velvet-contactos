@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { motion } from "framer-motion";
-import { VelvetLogo } from "@/components/velvet-logo";
+import { VelvetIsoLogo } from "@/components/velvet-logo";
 import { VIPBadge } from "@/components/vip-badge";
 import { Loader2, Trash2, Users, AlertTriangle } from "lucide-react";
 
@@ -75,7 +75,7 @@ export default function AdminPage() {
         className="min-h-dvh flex flex-col items-center justify-center px-6"
       >
         <div className="flex flex-col items-center mb-8">
-          <VelvetLogo className="w-20 h-20 mb-4" />
+          <VelvetIsoLogo className="w-20 h-20 mb-4" />
           <h1 className="font-[family-name:var(--font-cinzel)] text-2xl tracking-[0.2em] text-[#f4eade]">
             VELVET
           </h1>

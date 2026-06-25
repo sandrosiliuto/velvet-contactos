@@ -16,8 +16,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "VELVET contactos",
-  description: "EN LA VIDA TODO SON CONTACTOS",
+  title: "VELVET contactos · Acceso Exclusivo VIP",
+  description: "EN LA VIDA TODO SON CONTACTOS. VELVET contactos: socialité selectivo, lujo y conexiones VIP.",
 };
 
 export default function RootLayout({
@@ -27,7 +27,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${cinzel.variable} ${inter.variable} antialiased`}>
+      <body className={`${cinzel.variable} ${inter.variable} antialiased min-h-screen bg-[#0A0A0A] text-[#F4EADE] overflow-x-hidden`}>
+        <div className="fixed inset-0 pointer-events-none velvet-radial" aria-hidden="true" />
         {children}
       </body>
     </html>

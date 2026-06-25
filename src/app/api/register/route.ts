@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase-server";
 import { randomUUID } from "crypto";
+import sharp from "sharp";
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,7 +11,6 @@ export async function POST(request: NextRequest) {
     const accepted = formData.get("accepted")?.toString();
     const photo = formData.get("photo") as File | null;
 
-    // Validaciones
     if (!name || name.length < 2 || name.length > 60) {
       return NextResponse.json({ error: "Nombre inválido" }, { status: 400 });
     }
@@ -34,16 +34,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Foto obligatoria" }, { status: 400 });
     }
 
-    if (photo.size > 5 * 1024 * 1024) {
+    if (photo.size > 10 * 1024 * 1024) {
       return NextResponse.json(
-        { error: "La foto debe pesar menos de 5 MB" },
+        { error: "La foto debe pesar menos de 10 MB" },
         { status: 400 }
       );
     }
 
     const supabase = await createSupabaseServerClient();
 
-    // Verificar teléfono único
     const { data: existing } = await supabase
       .from("velvet_users")
       .select("id")
@@ -57,15 +56,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Subir foto a Storage
-    const ext = photo.name.split(".").pop() || "jpg";
-    const fileName = `${randomUUID()}.${ext}`;
+    // Comprimir foto a JPEG 800px de ancho
+    const arrayBuffer = await photo.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    const compressed = await sharp(buffer)
+      .rotate()
+      .resize({ width: 800, height: 800, fit: "inside", withoutEnlargement: true })
+      .jpeg({ quality: 85, progressive: true })
+      .toBuffer();
+
+    const fileName = `${randomUUID()}.jpg`;
     const filePath = `${fileName}`;
 
     const { error: uploadError } = await supabase.storage
       .from("velvet-photos")
-      .upload(filePath, photo, {
-        contentType: photo.type,
+      .upload(filePath, compressed, {
+        contentType: "image/jpeg",
         upsert: false,
       });
 
@@ -81,7 +87,6 @@ export async function POST(request: NextRequest) {
       data: { publicUrl },
     } = supabase.storage.from("velvet-photos").getPublicUrl(filePath);
 
-    // Insertar usuario
     const { data: user, error: insertError } = await supabase
       .from("velvet_users")
       .insert({
@@ -100,13 +105,12 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Setear cookies
     const response = NextResponse.json({ success: true, user }, { status: 201 });
     response.cookies.set("velvet_user_id", user.id, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 30, // 30 días
+      maxAge: 60 * 60 * 24 * 30,
       path: "/",
     });
     response.cookies.set("velvet_user_name", encodeURIComponent(user.name), {
@@ -126,3 +130,6 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
