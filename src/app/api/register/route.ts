@@ -38,8 +38,9 @@ export async function POST(req: Request) {
     const supabase = createServiceClient()
     let photoUrl: string | null = null
 
-    // Subir foto a Supabase Storage si se proporcionó
-    if (photo && photo.size > 0) {
+    // Helper: subir foto a Supabase Storage si se proporcionó
+    async function uploadPhoto(photo: File | null): Promise<string | null> {
+      if (!photo || photo.size === 0) return null
       try {
         const bytes = await photo.arrayBuffer()
         const buffer = Buffer.from(bytes)
@@ -50,24 +51,59 @@ export async function POST(req: Request) {
         if (!uploadError) {
           const { data: { publicUrl } } = supabase.storage
             .from('velvet-photos').getPublicUrl(filename)
-          photoUrl = publicUrl
+          return publicUrl
         } else {
           console.warn('Photo upload warning:', uploadError.message)
         }
       } catch (e) {
         console.warn('Photo upload failed (non-blocking):', e)
       }
+      return null
     }
 
-    // Insertar usuario en la DB
-    const { data: user, error } = await supabase
+    // ── Buscar si el teléfono ya está registrado (reautenticación) ──
+    const { data: existingUser, error: fetchError } = await supabase
       .from('velvet_users')
-      .insert({ name, phone, photo_url: photoUrl })
       .select('id, name, photo_url')
-      .single()
+      .eq('phone', phone)
+      .maybeSingle()
 
-    if (error) {
-      return NextResponse.json({ error: `DB: ${error.message}` }, { status: 500 })
+    if (fetchError) {
+      return NextResponse.json({ error: `DB: ${fetchError.message}` }, { status: 500 })
+    }
+
+    let user: { id: string; name: string; photo_url: string | null }
+
+    if (existingUser) {
+      // Reautenticación: actualizar foto si se subió una nueva
+      photoUrl = await uploadPhoto(photo)
+      if (photoUrl) {
+        const { data: updatedUser, error: updateError } = await supabase
+          .from('velvet_users')
+          .update({ photo_url: photoUrl })
+          .eq('id', existingUser.id)
+          .select('id, name, photo_url')
+          .single()
+        if (updateError) {
+          return NextResponse.json({ error: `DB: ${updateError.message}` }, { status: 500 })
+        }
+        user = updatedUser
+      } else {
+        user = existingUser
+      }
+    } else {
+      // Registro nuevo
+      photoUrl = await uploadPhoto(photo)
+      const { data: insertedUser, error } = await supabase
+        .from('velvet_users')
+        .insert({ name, phone, photo_url: photoUrl })
+        .select('id, name, photo_url')
+        .single()
+
+      if (error) {
+        return NextResponse.json({ error: `DB: ${error.message}` }, { status: 500 })
+      }
+      user = insertedUser
     }
 
     // Setear cookie de sesión (httpOnly) + cookie de nombre (legible desde JS)
