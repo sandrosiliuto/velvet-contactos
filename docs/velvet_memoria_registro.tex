@@ -1,0 +1,232 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{booktabs}
+
+\definecolor{velvetblack}{HTML}{0A0A0A}
+\definecolor{velvetrose}{HTML}{B76E79}
+\definecolor{velvetmauve}{HTML}{2B1F2A}
+\definecolor{velvetchampagne}{HTML}{F4EADE}
+
+\titleformat{\section}{\Large\bfseries\color{velvetrose}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{velvetmauve}}{\thesubsection.}{0.5em}{}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=velvetrose,
+  urlcolor=velvetrose,
+  pdftitle={VELVET - Memoria descriptiva para registro de marca y app},
+  pdfauthor={Sandro Siliuto}
+}
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+
+\begin{tikzpicture}
+  \draw[line width=1pt, velvetrose] (0,0) circle (1.2cm);
+  \node at (0,0) {\Huge\color{velvetrose}\textbf{V}};
+\end{tikzpicture}
+
+\vspace{1.5cm}
+
+{\Huge\bfseries\color{velvetblack} VELVET}\\[0.3cm]
+{\Large\color{velvetrose} CONTACTOS}
+
+\vspace{0.8cm}
+
+{\large\textit{``EN LA VIDA TODO SON CONTACTOS''}}
+
+\vspace{2cm}
+
+{\LARGE\bfseries Memoria descriptiva para registro}\\[0.3cm]
+{\LARGE\bfseries de marca y aplicación móvil}
+
+\vfill
+
+{\large Autor: \textbf{Sandro Siliuto}}\\[0.3cm]
+{\large Fecha: \textbf{30 de junio de 2026}}
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Resumen ejecutivo}
+
+VELVET es una aplicación móvil y plataforma digital de \textbf{networking social exclusivo} orientada a adultos que buscan establecer contactos de calidad en entornos de ocio nocturno, eventos privados y experiencias VIP. La propuesta de valor se centra en combinar un sistema de emparejamiento por tarjetas (swipe) con un ecosistema de recompensas geolocalizadas (VELVET\_GO), ofreciendo a los usuarios acceso a descuentos, consumiciones gratuitas, entradas VIP y merchandising exclusivo en locales asociados.
+
+La identidad visual se inspira en la estética de un club privado nocturno: fondos oscuros, acentos en oro rosa, tipografías serif elegantes y efectos de vidrio esmerilado (glassmorphism). La palabra ``VIP'' está presente de forma recurrente en la interfaz para reforzar el posicionamiento de exclusividad.
+
+\section{Concepto y propuesta de valor}
+
+\subsection{Problema que resuelve}
+
+En los entornos de ocio nocturno y eventos sociales, muchas personas encuentran dificultades para iniciar conversaciones o conocer a otras personas con intereses compatibles. Las aplicaciones de dating tradicionales carecen del contexto de evento en vivo, mientras que la experiencia presencial puede resultar intimidante o poco eficiente.
+
+VELVET resuelve este problema mediante:
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Perfiles verificados por teléfono}: cada usuario se registra con nombre y número de teléfono, reduciendo cuentas falsas.
+  \item \textbf{Sistema de swipe en el entorno del evento}: los usuarios visualizan perfiles de personas presentes o cercanas y solo cuando ambas partes coinciden (match) se comparten los datos de contacto.
+  \item \textbf{Geolocalización gamificada}: a través del módulo VELVET\_GO, los usuarios descubren checkpoints y recompensas en locales asociados, fomentando la interacción física.
+\end{itemize}
+
+\subsection{Público objetivo}
+
+\begin{itemize}[leftmargin=*]
+  \item Adultos de 25 a 45 años residentes en grandes ciudades españolas.
+  \item Asistentes a eventos nocturnos, fiestas privadas, discotecas y festivales.
+  \item Usuarios de aplicaciones de contactos que valoran la exclusividad y la seguridad.
+\end{itemize}
+
+\section{Funcionalidades principales}
+
+\subsection{Registro y acceso VIP}
+
+El acceso a VELVET comienza en una pantalla de bienvenida con el isotipo y la frase ``EN LA VIDA TODO SON CONTACTOS''. El usuario introduce:
+
+\begin{itemize}[leftmargin=*]
+  \item Nombre o apodo.
+  \item Número de teléfono español (9 dígitos, empieza por 6 o 7).
+  \item Foto opcional (solo se comparte si hay match).
+\end{itemize}
+
+El sistema almacena el perfil en una base de datos segura y genera una cookie de sesión para mantener la experiencia fluida. Si el usuario cierra sesión, puede volver a entrar con el mismo número de teléfono.
+
+\subsection{Descubrimiento de perfiles (swipe)}
+
+Una vez dentro, el usuario accede a una interfaz de tarjetas donde puede:
+
+\begin{itemize}[leftmargin=*]
+  \item Ver foto, nombre y datos de otros asistentes.
+  \item Deslizar a la derecha (me gusta) o a la izquierda (descartar).
+  \item Recibir notificación de match cuando ambos usuarios se gustan mutuamente.
+  \item Acceder a la lista de matches y revisar perfiles conectados.
+\end{itemize}
+
+\subsection{Módulo VELVET\_GO: recompensas y checkpoints}
+
+VELVET\_GO es la extensión gamificada de la aplicación. Funciona de forma similar a las geocompensas de Pokémon GO, pero adaptado al ocio nocturno:
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Mapa de checkpoints}: muestra paradas exclusivas en locales asociados (discotecas, salas, rooftops).
+  \item \textbf{Recompensas disponibles}: vales de descuento, copas gratis, entradas VIP y regalos o merchandising.
+  \item \textbf{Desbloqueo por proximidad}: cuando el usuario está físicamente cerca de un checkpoint (dentro del radio configurado), puede desbloquear la recompensa.
+  \item \textbf{Código de canje QR}: cada recompensa desbloqueada genera un código único (por ejemplo, VELVET-COPA-001) que el usuario presenta en el local para canjearla.
+\end{itemize}
+
+\subsection{Panel de administración}
+
+Los organizadores y administradores de VELVET disponen de un panel web protegido para:
+
+\begin{itemize}[leftmargin=*]
+  \item Gestionar usuarios registrados.
+  \item Crear, editar y eliminar recompensas.
+  \item Crear, editar y eliminar checkpoints en el mapa.
+  \item Controlar stock y fechas de validez de cada recompensa.
+\end{itemize}
+
+\section{Identidad de marca y sistema de diseño}
+
+\subsection{Logotipo e isotipo}
+
+El isotipo de VELVET representa una fusión simétrica de dos rostros humanos enfrentados, sugiriendo conexión, intimidad y emparejamiento selectivo. En el centro destaca una ``V'' que ancla el nombre de la aplicación y un destello de cuatro puntas que simboliza la chispa del encuentro y el estatus de élite.
+
+\subsection{Paleta cromática}
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+\textbf{Token} & \textbf{Nombre} & \textbf{HEX} & \textbf{Aplicación} \\
+\midrule
+Onyx Black & \#0A0A0A & RGB(10,10,10) & Fondo base \\
+Velvet Mauve & \#2B1F2A & RGB(43,31,42) & Tarjetas y modales \\
+Classic Rose Gold & \#B76E79 & RGB(183,110,121) & Botones y acentos \\
+Deep Rose Gold & \#8F404C & RGB(143,64,76) & Bordes y estados de presión \\
+Pale Rose Gold & \#F2D7D3 & RGB(242,215,211) & Etiquetas y textos secundarios \\
+Brut Champagne & \#F4EADE & RGB(244,234,222) & Texto principal \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Tipografía}
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Títulos editoriales}: Cinzel (serif elegante, estilo moda y alta joyería).
+  \item \textbf{Texto de interfaz y cuerpo}: Inter (sans-serif geométrica, alta legibilidad).
+\end{itemize}
+
+\subsection{Estilo visual}
+
+La interfaz emplea \textbf{glassmorphism}: fondos translúcidos con desenfoque, bordes sutiles en tonos oro rosa y sombras difusas que generan sensación de profundidad y lujo. Los botones principales utilizan un gradiente metálico de oro rosa que emula reflejos de metal pulido.
+
+\section{Arquitectura técnica}
+
+\subsection{Stack tecnológico}
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Frontend}: Next.js 15 + React + TypeScript + Tailwind CSS.
+  \item \textbf{Backend}: API routes serverless de Next.js.
+  \item \textbf{Base de datos}: Supabase (PostgreSQL).
+  \item \textbf{Almacenamiento}: Supabase Storage para fotos de perfil y recompensas.
+  \item \textbf{Mapas}: Leaflet con capas oscuras de CARTO.
+  \item \textbf{Despliegue}: Vercel.
+\end{itemize}
+
+\subsection{Tablas principales en Supabase}
+
+\begin{itemize}[leftmargin=*]
+  \item \texttt{velvet\_users}: perfiles de usuario (id, nombre, teléfono, foto).
+  \item \texttt{swipes}: acciones de like/dislike entre usuarios.
+  \item \texttt{matches}: coincidencias mutuas.
+  \item \texttt{rewards}: catálogo de recompensas VIP.
+  \item \texttt{checkpoints}: ubicaciones geográficas que desbloquean recompensas.
+  \item \texttt{user\_rewards}: recompensas desbloqueadas por cada usuario.
+  \item \texttt{checkpoint\_visits}: registro de visitas a checkpoints.
+\end{itemize}
+
+\subsection{Seguridad y privacidad}
+
+\begin{itemize}[leftmargin=*]
+  \item Los números de teléfono son únicos para evitar duplicados.
+  \item Las fotos y datos de contacto solo se comparten cuando existe match mutuo.
+  \item Las operaciones de escritura en la base de datos se realizan desde el servidor mediante claves de servicio seguras.
+  \item Row Level Security (RLS) en Supabase para controlar el acceso a datos.
+\end{itemize}
+
+\section{URLs de despliegue y repositorios}
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{VELVET contactos}: \url{https://vamos-a-definir-la-verbena-clone.vercel.app}
+  \item \textbf{VELVET\_GO}: \url{https://vamos-a-definir-la-go.vercel.app}
+  \item \textbf{Repositorio VELVET\_GO}: \url{https://github.com/sandrosiliuto/velvet-go}
+\end{itemize}
+
+\section{Clases de productos y servicios sugeridas para registro}
+
+Para el registro de marca y/o aplicación, se sugieren las siguientes clases del Nice:
+
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Clase 9}: software descargable para contactos sociales, emparejamiento y gestión de recompensas; aplicaciones móviles.
+  \item \textbf{Clase 35}: servicios de publicidad, promoción de eventos y fidelización de clientes mediante recompensas.
+  \item \textbf{Clase 38}: servicios de telecomunicaciones y mensajería entre usuarios.
+  \item \textbf{Clase 41}: organización de eventos sociales, fiestas y ocio nocturno.
+  \item \textbf{Clase 42}: desarrollo y alojamiento de software y plataformas digitales.
+\end{itemize}
+
+\section{Declaración de autoría}
+
+La presente memoria describe una aplicación y marca original concebida, desarrollada y desplegada por \textbf{Sandro Siliuto}. El código fuente, el diseño de interfaz, la identidad visual y la lógica de negocio han sido creados de forma original para proteger la idea, el software y la marca comercial asociada a VELVET.
+
+\end{document}
