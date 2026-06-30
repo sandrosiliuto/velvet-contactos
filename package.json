@@ -6,7 +6,16 @@
   "scripts": {
     "start": "npx serve ."
   },
-  "keywords": ["velvet", "vip", "contactos", "lujo", "rose-gold"],
+  "keywords": [
+    "velvet",
+    "vip",
+    "contactos",
+    "lujo",
+    "rose-gold"
+  ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "docx": "^9.7.1"
+  }
 }
