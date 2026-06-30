@@ -15,13 +15,13 @@ export async function DELETE(req: NextRequest) {
 
   // Borrar en orden para respetar foreign keys
   await supabase.from('swipes').delete().neq('id', '00000000-0000-0000-0000-000000000000')
-  await supabase.from('party_users').delete().neq('id', '00000000-0000-0000-0000-000000000000')
+  await supabase.from('velvet_users').delete().neq('id', '00000000-0000-0000-0000-000000000000')
 
   // Vaciar el bucket de fotos
-  const { data: files } = await supabase.storage.from('party-photos').list()
+  const { data: files } = await supabase.storage.from('velvet-photos').list()
   if (files && files.length > 0) {
     await supabase.storage
-      .from('party-photos')
+      .from('velvet-photos')
       .remove(files.map((f) => f.name))
   }
 

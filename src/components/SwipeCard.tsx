@@ -31,8 +31,8 @@ export default function SwipeCard({ user, isTop, stackDepth, onLike, onPass }: P
       <div
         className="absolute inset-0 rounded-3xl"
         style={{
-          background: 'linear-gradient(145deg, #0a0f08, #0d1a0a)',
-          border: '1px solid rgba(232,222,181,0.08)',
+          background: 'linear-gradient(145deg, #2B1F2A, #0A0A0A)',
+          border: '1px solid rgba(183,110,121,0.08)',
           transform: `scale(${scaleBack}) translateY(${yBack}px)`,
           zIndex: -stackDepth,
         }}
@@ -56,8 +56,7 @@ export default function SwipeCard({ user, isTop, stackDepth, onLike, onPass }: P
         transition={{ type: 'spring', stiffness: 300, damping: 28 }}
         whileTap={{ cursor: 'grabbing' }}
       >
-        <div className="relative w-full h-full"
-          style={{ background: 'linear-gradient(145deg, #0a0f08, #0d1a0a)' }}
+        <div className="relative w-full h-full swipe-card-bg"
         >
           {user.photo_url ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -72,14 +71,14 @@ export default function SwipeCard({ user, isTop, stackDepth, onLike, onPass }: P
               <div
                 className="w-28 h-28 rounded-full flex items-center justify-center text-5xl font-black"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(232,222,181,0.15), rgba(93,173,46,0.15))',
-                  border: '2px solid rgba(232,222,181,0.2)',
-                  color: '#e8deb5',
+                  background: 'linear-gradient(135deg, rgba(183,110,121,0.15), rgba(43,31,42,0.15))',
+                  border: '2px solid rgba(183,110,121,0.2)',
+                  color: '#F2D7D3',
                 }}
               >
                 {user.name.charAt(0).toUpperCase()}
               </div>
-              <span className="text-sm text-[#c4b78a]/40">Sin foto aún</span>
+              <span className="text-sm text-[#B76E79]/50">Sin foto aún</span>
             </div>
           )}
 
@@ -87,7 +86,7 @@ export default function SwipeCard({ user, isTop, stackDepth, onLike, onPass }: P
 
           <div
             className="absolute inset-0 rounded-3xl pointer-events-none"
-            style={{ border: '1px solid rgba(232,222,181,0.12)' }}
+            style={{ border: '1px solid rgba(183,110,121,0.12)' }}
           />
 
           {/* Stamp LIKE */}
@@ -96,9 +95,9 @@ export default function SwipeCard({ user, isTop, stackDepth, onLike, onPass }: P
             style={{
               opacity: likeOpacity,
               rotate: -15,
-              border: '3px solid #e8deb5',
-              color: '#e8deb5',
-              textShadow: '0 0 12px rgba(232,222,181,0.5)',
+              border: '3px solid #F2D7D3',
+              color: '#F2D7D3',
+              textShadow: '0 0 12px rgba(242,215,211,0.5)',
             }}
           >
             LIKE
@@ -110,9 +109,9 @@ export default function SwipeCard({ user, isTop, stackDepth, onLike, onPass }: P
             style={{
               opacity: passOpacity,
               rotate: 15,
-              border: '3px solid #ff4466',
-              color: '#ff4466',
-              textShadow: '0 0 12px rgba(255,68,102,0.5)',
+              border: '3px solid #8F404C',
+              color: '#8F404C',
+              textShadow: '0 0 12px rgba(143,64,76,0.5)',
             }}
           >
             NOPE
@@ -121,7 +120,7 @@ export default function SwipeCard({ user, isTop, stackDepth, onLike, onPass }: P
           {/* Nombre */}
           <div className="absolute bottom-0 inset-x-0 p-5 pointer-events-none">
             <h2 className="text-3xl font-black text-white drop-shadow-lg">{user.name}</h2>
-            <p className="text-sm text-[#c4b78a]/50 mt-0.5">Desliza para elegir →</p>
+            <p className="text-sm text-[#B76E79]/70 mt-0.5">Desliza para elegir →</p>
           </div>
         </div>
       </motion.div>

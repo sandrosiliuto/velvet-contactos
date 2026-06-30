@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  const userId = request.cookies.get('party_user_id')?.value
+  const userId = request.cookies.get('velvet_user_id')?.value
 
   // /discover requiere registro
   if (pathname.startsWith('/discover') && !userId) {

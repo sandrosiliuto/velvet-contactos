@@ -18,14 +18,14 @@ export async function POST(req: Request) {
     if (isDemoMode) {
       const id = `demo-${crypto.randomUUID()}`
       const response = NextResponse.json({ user: { id, name, photo_url: null } })
-      response.cookies.set('party_user_id', id, {
+      response.cookies.set('velvet_user_id', id, {
         httpOnly: true,
         sameSite: 'lax',
         maxAge: 60 * 60 * 8,
         path: '/',
       })
       // Guardamos también el nombre para el saludo en discover
-      response.cookies.set('party_user_name', name, {
+      response.cookies.set('velvet_user_name', name, {
         httpOnly: false,
         sameSite: 'lax',
         maxAge: 60 * 60 * 8,
@@ -45,11 +45,11 @@ export async function POST(req: Request) {
         const buffer = Buffer.from(bytes)
         const filename = `${crypto.randomUUID()}.jpg`
         const { error: uploadError } = await supabase.storage
-          .from('party-photos')
+          .from('velvet-photos')
           .upload(filename, buffer, { contentType: 'image/jpeg', cacheControl: '31536000' })
         if (!uploadError) {
           const { data: { publicUrl } } = supabase.storage
-            .from('party-photos').getPublicUrl(filename)
+            .from('velvet-photos').getPublicUrl(filename)
           photoUrl = publicUrl
         } else {
           console.warn('Photo upload warning:', uploadError.message)
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
 
     // Insertar usuario en la DB
     const { data: user, error } = await supabase
-      .from('party_users')
+      .from('velvet_users')
       .insert({ name, phone, photo_url: photoUrl })
       .select('id, name, photo_url')
       .single()
@@ -72,13 +72,13 @@ export async function POST(req: Request) {
 
     // Setear cookie de sesión (httpOnly) + cookie de nombre (legible desde JS)
     const response = NextResponse.json({ user })
-    response.cookies.set('party_user_id', user.id, {
+    response.cookies.set('velvet_user_id', user.id, {
       httpOnly: true,
       sameSite: 'lax',
       maxAge: 60 * 60 * 8,
       path: '/',
     })
-    response.cookies.set('party_user_name', user.name, {
+    response.cookies.set('velvet_user_name', user.name, {
       httpOnly: false,
       sameSite: 'lax',
       maxAge: 60 * 60 * 8,

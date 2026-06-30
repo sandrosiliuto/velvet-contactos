@@ -8,9 +8,9 @@
 - [x] canvas-confetti (animación match)
 
 ## Base de datos Supabase (ejecutar en SQL Editor)
-- [ ] `sql/001_schema.sql` — tablas `party_users` y `swipes`
+- [ ] `sql/001_schema.sql` — tablas `velvet_users` y `swipes`
 - [ ] `sql/002_rls.sql` — políticas RLS (nunca exponer el teléfono)
-- [ ] `sql/003_storage.sql` — bucket `party-photos` público
+- [ ] `sql/003_storage.sql` — bucket `velvet-photos` público
 
 ## Variables de entorno (Vercel + .env.local)
 - [ ] `NEXT_PUBLIC_SUPABASE_URL`
@@ -30,7 +30,7 @@
 - [x] Detección de match mutuo en el servidor
 - [x] Modal de match con confeti + botón WhatsApp
 - [x] Panel admin: lista de usuarios + borrar todo
-- [x] Cookie `party_user_id` (8 h) — sesión sin contraseña
+- [x] Cookie `velvet_user_id` (8 h) — sesión sin contraseña
 
 ## Eliminado (no está en el nuevo código)
 - [x] Sistema de chat interno

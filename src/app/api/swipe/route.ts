@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 
       if (mutual) {
         const { data: matchedUser } = await supabase
-          .from('party_users')
+          .from('velvet_users')
           .select('id, name, photo_url, phone')
           .eq('id', swipedId)
           .single()

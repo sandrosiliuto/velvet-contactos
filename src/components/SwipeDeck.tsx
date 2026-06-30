@@ -106,9 +106,9 @@ export default function SwipeDeck({
   if (index >= users.length) {
     return (
       <div className="flex flex-col items-center justify-center h-full text-center px-8 space-y-5">
-        <div className="text-6xl">🎊</div>
-        <h2 className="text-2xl font-black text-[#e8deb5]">¡Has visto a todos!</h2>
-        <p className="text-[#c4b78a]/60 text-sm">
+        <div className="text-6xl">✨</div>
+        <h2 className="text-2xl font-black text-[#F2D7D3]">¡Has visto a todos!</h2>
+        <p className="text-[#B76E79]/70 text-sm">
           ¿Quieres darle otra oportunidad a los que rechazaste?
         </p>
 
@@ -116,18 +116,17 @@ export default function SwipeDeck({
         <button
           onClick={handleReloadRejected}
           disabled={reloading}
-          className="px-6 py-3 rounded-2xl font-bold text-[#050a04] transition hover:opacity-90 active:scale-95 disabled:opacity-50"
-          style={{ background: 'linear-gradient(135deg, #e8deb5, #c4b78a)' }}
+          className="px-6 py-3 rounded-2xl font-bold text-[#0A0A0A] transition hover:opacity-90 active:scale-95 disabled:opacity-50 metallic-rose-gold"
         >
           {reloading ? '⏳ Recargando...' : '🔄 Ver de nuevo'}
         </button>
 
-        <p className="text-xs text-[#c4b78a]/30">
+        <p className="text-xs text-[#B76E79]/40">
           Solo se reinician los rechazados — tus likes se mantienen intactos
         </p>
 
         {isDemo && (
-          <p className="text-yellow-400 text-xs mt-2 bg-yellow-500/10 border border-yellow-500/30 rounded-xl px-4 py-2">
+          <p className="text-[#F2D7D3] text-xs mt-2 bg-[#B76E79]/10 border border-[#B76E79]/30 rounded-xl px-4 py-2">
             ⚡ Modo demo
           </p>
         )}
@@ -139,7 +138,7 @@ export default function SwipeDeck({
     <div className="flex flex-col items-center justify-center h-full gap-5 px-4">
       {/* Contador */}
       <div className="flex items-center gap-2">
-        <span className="text-xs text-[#c4b78a]/50">
+        <span className="text-xs text-[#B76E79]/60">
           {remaining} {remaining === 1 ? 'persona' : 'personas'} por conocer
         </span>
       </div>
@@ -169,7 +168,7 @@ export default function SwipeDeck({
         <button
           onClick={() => handleSwipe(false)}
           aria-label="No me gusta"
-          className="w-16 h-16 rounded-full flex items-center justify-center text-2xl border-2 border-red-500/50 hover:border-red-400 hover:scale-110 hover:bg-red-500/10 transition-all bg-[#0a0f08]"
+          className="w-16 h-16 rounded-full flex items-center justify-center text-2xl border-2 border-[#8F404C]/70 hover:border-[#8F404C] hover:scale-110 hover:bg-[#8F404C]/10 transition-all bg-[#0A0A0A] text-[#8F404C]"
         >
           ✕
         </button>
@@ -177,11 +176,7 @@ export default function SwipeDeck({
         <button
           onClick={() => handleSwipe(true)}
           aria-label="Me gusta"
-          className="w-20 h-20 rounded-full flex items-center justify-center text-4xl border-2 hover:scale-110 transition-all"
-          style={{
-            borderColor: 'rgba(232,222,181,0.5)',
-            background: 'linear-gradient(135deg, rgba(232,222,181,0.1), rgba(93,173,46,0.1))',
-          }}
+          className="w-20 h-20 rounded-full flex items-center justify-center text-4xl border-2 hover:scale-110 transition-all metallic-rose-gold text-[#0A0A0A] border-[#F2D7D3]/50"
         >
           ♥
         </button>
@@ -189,13 +184,13 @@ export default function SwipeDeck({
         <button
           onClick={() => handleSwipe(false)}
           aria-label="Siguiente"
-          className="w-16 h-16 rounded-full flex items-center justify-center text-xl border-2 border-[#1a3010] hover:border-[#e8deb5]/40 hover:scale-110 transition-all bg-[#0a0f08] text-[#c4b78a]/50"
+          className="w-16 h-16 rounded-full flex items-center justify-center text-xl border-2 border-[#2B1F2A] hover:border-[#B76E79]/40 hover:scale-110 transition-all bg-[#0A0A0A] text-[#B76E79]/50"
         >
           →
         </button>
       </div>
 
-      <p className="text-xs text-[#c4b78a]/30">Desliza la tarjeta o usa los botones</p>
+      <p className="text-xs text-[#B76E79]/40">Desliza la tarjeta o usa los botones</p>
 
       {matchData && (
         <MatchModal matchedUser={matchData} onClose={() => setMatchData(null)} />

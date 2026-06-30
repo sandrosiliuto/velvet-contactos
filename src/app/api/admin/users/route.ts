@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
 
   const supabase = createServiceClient()
   const { data: users, error } = await supabase
-    .from('party_users')
+    .from('velvet_users')
     .select('id, name, phone, photo_url, created_at')
     .order('created_at', { ascending: false })
 

@@ -7,6 +7,6 @@ export async function POST(req: Request) {
     `${url.protocol}//${url.host}/`,
     { status: 303 },
   )
-  response.cookies.delete('party_user_id')
+  response.cookies.delete('velvet_user_id')
   return response
 }

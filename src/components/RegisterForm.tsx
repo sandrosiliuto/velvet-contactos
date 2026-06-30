@@ -77,19 +77,14 @@ export default function RegisterForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full space-y-4 rounded-3xl p-6"
-      style={{
-        background: 'rgba(0,0,0,0.55)',
-        backdropFilter: 'blur(12px)',
-        border: '1px solid rgba(255,255,255,0.1)',
-      }}
+      className="w-full space-y-4 rounded-3xl p-6 velvet-glass border border-[#B76E79]/15 shadow-2xl"
     >
       {/* Foto */}
       <div className="flex flex-col items-center gap-3">
         <button
           type="button"
           onClick={() => fileRef.current?.click()}
-          className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-dashed border-white/30 hover:border-white/60 transition flex items-center justify-center bg-black/40"
+          className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-dashed border-[#B76E79]/40 hover:border-[#B76E79]/70 transition flex items-center justify-center bg-white/5"
         >
           {preview ? (
             <img src={preview} alt="foto" className="w-full h-full object-cover" />
@@ -97,7 +92,7 @@ export default function RegisterForm() {
             <span className="text-3xl">📷</span>
           )}
         </button>
-        <span className="text-xs text-white/50">Toca para agregar tu foto</span>
+        <span className="text-xs text-[#F2D7D3]/70">Toca para agregar tu foto</span>
         <input
           ref={fileRef}
           type="file"
@@ -116,13 +111,13 @@ export default function RegisterForm() {
         placeholder="Tu nombre"
         required
         maxLength={30}
-        className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 focus:border-white/40 outline-none transition placeholder-white/30 text-white"
+        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#B76E79]/50 outline-none transition placeholder-[#F2D7D3]/40 text-[#F4EADE]"
       />
 
       {/* Teléfono */}
       <div>
         <div className="relative">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/40 text-sm select-none">🇪🇸</span>
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#F2D7D3]/50 text-sm select-none">🇪🇸</span>
           <input
             type="tel"
             value={phone}
@@ -133,10 +128,10 @@ export default function RegisterForm() {
             placeholder="612 345 678"
             required
             inputMode="numeric"
-            className="w-full pl-11 pr-4 py-3 rounded-xl bg-black/40 border border-white/15 focus:border-white/40 outline-none transition placeholder-white/30 text-white"
+            className="w-full pl-11 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-[#B76E79]/50 outline-none transition placeholder-[#F2D7D3]/40 text-[#F4EADE]"
           />
         </div>
-        <p className="text-xs text-white/30 mt-1 ml-1">
+        <p className="text-[11px] text-[#F2D7D3]/50 mt-1 ml-1">
           Solo 9 dígitos · Se comparte solo si hay match
         </p>
       </div>
@@ -147,9 +142,9 @@ export default function RegisterForm() {
           type="checkbox"
           checked={agreed}
           onChange={(e) => setAgreed(e.target.checked)}
-          className="mt-0.5"
+          className="mt-0.5 w-4 h-4 accent-[#B76E79] rounded"
         />
-        <span className="text-xs text-white/50">
+        <span className="text-[11px] text-[#F2D7D3]/80 leading-tight">
           Entiendo que mis datos se usan solo durante el evento y se eliminan después.
         </span>
       </label>
@@ -163,11 +158,10 @@ export default function RegisterForm() {
 
       <button
         type="submit"
-        disabled={loading || !name || !phone}
-        className="w-full py-3.5 rounded-2xl font-black text-white disabled:opacity-40 transition hover:opacity-90 active:scale-95 text-lg"
-        style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)' }}
+        disabled={loading || !name || !phone || !agreed}
+        className="w-full py-4 rounded-2xl metallic-rose-gold text-[#0A0A0A] font-semibold tracking-widest uppercase text-sm shadow-lg disabled:opacity-50 transition-all duration-300"
       >
-        {loading ? '⏳ Entrando...' : '¡Unirse a la fiesta!'}
+        {loading ? '⏳ Entrando...' : 'Entrar'}
       </button>
     </form>
   )
